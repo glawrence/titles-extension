@@ -1,0 +1,9 @@
+/*  skin/toolbar-button.css  */
+
+#titlesextension-button {
+  list-style-image: url("chrome://titlesextension/skin/gds_logo_24.png");
+}
+
+toolbar[iconsize="small"] #titlesextension-button {
+  list-style-image: url("chrome://titlesextension/skin/gds_logo_16.png");
+}

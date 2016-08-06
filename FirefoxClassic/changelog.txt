@@ -1,0 +1,11 @@
+1.0.0
+- bumped the version number to 1.0, otherwise identical to 0.3.1
+- uploaded to GitHub
+
+0.3.1
+- made Preview multiline to handle long page titles and urls
+- created function to assemble urls
+- updated Add On Description
+
+0.3.0
+- added dialog to allow customisation, rather than just straight to clipboard

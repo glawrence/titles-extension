@@ -1,0 +1,8 @@
+content    titlesextension    chrome/content/
+
+overlay chrome://browser/content/browser.xul chrome://titlesextension/content/titles_toolbar.xul
+
+skin titlesextension classic/1.0 chrome/skin/
+
+# this is needed to get the toolbar button icon displaying properly in the customize dialog
+style chrome://global/content/customizeToolbar.xul chrome://titlesextension/skin/titles_toolbar.css

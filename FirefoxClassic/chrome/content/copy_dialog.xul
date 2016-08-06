@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+
+<dialog
+  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  id="myDialogId"
+  title="Titles Extension"
+  ondialogaccept="return onOK();"
+  onload="centerWindowOnScreen();onLoad();"
+  windowtype="myDialogWindowType">
+
+	<script type="application/javascript" src="chrome://titlesextension/content/copy_dialog.js"/>
+	<script type="application/javascript" src="chrome://titlesextension/content/titles_extension.js"/>
+	<grid>
+		<columns>
+			<column/>
+			<column/>
+		</columns>
+		<rows>
+			<row align="center">
+				<label value="Title:"/>
+				<textbox size="100" id="title" oninput="updatePreview();"/>
+			</row>
+			<row align="center">
+				<label value="URL:"/>
+				<textbox size="100" id="url" oninput="updatePreview();"/>
+			</row>
+			<row align="center">
+				<label value="Target:"/>
+				<menulist id="target" oncommand="updatePreview();" editable="false" label="Please Choose">
+					<!-- _blank, _parent, _self, _top, framename http://www.w3schools.com/tags/att_a_target.asp or https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a -->
+					<menupopup>
+						<menuitem label="New Tab/Window" value="_blank"/>
+						<menuitem label="Parent Frame or Current Tab/Window" value="_parent"/>
+						<menuitem label="Current Frame (default)" value="_self"/>
+					</menupopup>
+				</menulist>
+			</row>
+			<row align="center">
+				<spacer flex="1"/>
+				<separator class="groove-thin"/>
+			</row>
+			<row align="top">
+				<label value="Preview:"/>
+				<textbox size="100" id="preview" readonly="true" multiline="true" rows="2"/>
+			</row>
+		</rows>
+	</grid>
+</dialog>

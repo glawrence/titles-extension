@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+
+<?xml-stylesheet href="chrome://titlesextension/skin/titles_toolbar.css" type="text/css"?>
+
+<overlay id="sample"  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+	<script type="application/javascript" src="chrome://titlesextension/content/titles_extension.js"/>
+	
+	<!--statusbar id="status-bar">
+		<statusbarpanel id="my-panel" label="Titles Extension is running"  />
+	</statusbar-->
+
+	<toolbarpalette id="BrowserToolbarPalette">
+		<toolbarbutton id="titlesextension-button" class="toolbarbutton-1" label="Titles" tooltiptext="Titles Extension" oncommand="TitlesExtension.onToolbarButtonCommand(event);"/>
+	</toolbarpalette>
+</overlay>
