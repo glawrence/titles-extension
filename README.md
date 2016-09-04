@@ -6,7 +6,7 @@ The best place to get Titles Extension from is [Titles Extension :: Add-ons for 
 
 # Plans
 
-Currently the Titles Extension has been developed as a classic Firefox Extension using XUL and JavaScript. The plan is to port this into a WebExtension and then easily support other browsers. In addition I need to prepare for [Electrolysis](https://developer.mozilla.org/en-US/Firefox/Multiprocess_Firefox) and Mozilla's roadmap.
+Currently the Titles Extension has been developed as a classic Firefox Extension using XUL and JavaScript. The plan is to port this into a WebExtension and then easily support other browsers. In addition I need to prepare for [Electrolysis](https://developer.mozilla.org/en-US/Firefox/Multiprocess_Firefox) and Mozilla's roadmap. As of version 1.1.0 it is known this extension does not work with E10S aka Electrolysis.
 
 # To Do
 * Convert build script to Python (to be cross platform)

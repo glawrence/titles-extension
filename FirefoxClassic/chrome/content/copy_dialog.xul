@@ -40,6 +40,16 @@
 				<spacer flex="1"/>
 				<separator class="groove-thin"/>
 			</row>
+			<row>
+				<label control="typeselection" value="Output"/>
+				<radiogroup id="typeselection" orient="horizontal">
+					<!-- Note: onclick fires before the actual change! -->
+					<radio value="0" oncommand="updatePreview();" label="HTML" selected="true"/>
+					<radio value="1" oncommand="updatePreview();" label="Markdown"/>
+					<radio value="2" oncommand="updatePreview();" label="Wiki"/>
+					<radio value="3" oncommand="updatePreview();" label="MediaWiki"/>
+				</radiogroup>
+			</row>
 			<row align="top">
 				<label value="Preview:"/>
 				<textbox size="100" id="preview" readonly="true" multiline="true" rows="2"/>

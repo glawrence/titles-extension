@@ -13,7 +13,8 @@ function onOK() {
    // because this function is never called
    window.arguments[0].out = {url:document.getElementById("url").value,
         title:document.getElementById("title").value,
-		target:document.getElementById("target").value};
+		target:document.getElementById("target").value,
+		type:document.getElementById("typeselection").selectedIndex};
    return true;
 }
 
@@ -21,6 +22,7 @@ function updatePreview() {
 	strURL = document.getElementById("url").value;
 	strTitle = document.getElementById("title").value;
 	strTarget = document.getElementById("target").value;
+	iOutputType = document.getElementById("typeselection").selectedIndex;
 	//alert(strTarget);
-	document.getElementById("preview").value = TitlesExtension.assembleURL(strURL, strTitle, strTarget);
+	document.getElementById("preview").value = TitlesExtension.assembleURL(strURL, strTitle, strTarget, iOutputType);
 }
