@@ -1,5 +1,6 @@
 1.1.0
 - added ability to select output type, HTML, Markdown, or Wiki
+- minor refactoring of code to support more output types
 
 1.0.1
 - Add-On Homepage change

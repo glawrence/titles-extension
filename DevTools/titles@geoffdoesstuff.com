@@ -1,0 +1,1 @@
+C:\Dev\GitHub\titles-extension\FirefoxClassic

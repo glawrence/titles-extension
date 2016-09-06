@@ -44,10 +44,10 @@
 				<label control="typeselection" value="Output"/>
 				<radiogroup id="typeselection" orient="horizontal">
 					<!-- Note: onclick fires before the actual change! -->
-					<radio value="0" oncommand="updatePreview();" label="HTML" selected="true"/>
-					<radio value="1" oncommand="updatePreview();" label="Markdown"/>
-					<radio value="2" oncommand="updatePreview();" label="Wiki"/>
-					<radio value="3" oncommand="updatePreview();" label="MediaWiki"/>
+					<radio value="0" oncommand="updateGeneric();" label="HTML" selected="true"/>
+					<radio value="1" oncommand="updateGeneric();" label="Markdown"/>
+					<radio value="2" oncommand="updateGeneric();" label="Wiki"/>
+					<radio value="3" oncommand="updateGeneric();" label="MediaWiki"/>
 				</radiogroup>
 			</row>
 			<row align="top">

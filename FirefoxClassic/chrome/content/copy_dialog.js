@@ -3,7 +3,7 @@ function onLoad() {
   // Use the arguments passed to us by the caller
   document.getElementById("url").value = window.arguments[0].inn.url;
   document.getElementById("title").value = window.arguments[0].inn.title;
-  updatePreview();
+  updateGeneric();
 }
 
 // Called once if and only if the user clicks OK
@@ -16,6 +16,25 @@ function onOK() {
 		target:document.getElementById("target").value,
 		type:document.getElementById("typeselection").selectedIndex};
    return true;
+}
+
+function updateGeneric() {
+	//Only use this if you need both "Preview" and the User Interface updated, otherwise just call the one needed
+
+	// update the output preview
+	updatePreview();
+	// update the user interface, enable/disable controls etc
+	updateUserInterface();
+}
+
+function updateUserInterface() {
+	xulTarget = document.getElementById("target");
+	// update user interface: disable target selection for non-HTML output
+	if (iOutputType > 0) {
+		xulTarget.disabled = true;
+	} else {
+		xulTarget.disabled = false;
+	}
 }
 
 function updatePreview() {
