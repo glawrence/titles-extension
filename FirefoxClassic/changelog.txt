@@ -1,5 +1,11 @@
+1.2.0
+- option to specify relative paths, rather than always absolute ones (Issue #5)
+- added a new option to the "Target" drop down list to remove the target attribute (Issue #4)
+- updated the dialog with a more logical order
+- minor improvement to control alignment
+
 1.1.0
-- added ability to select output type, HTML, Markdown, or Wiki
+- added ability to select output type, HTML, Markdown, or Wiki (Issue #2)
 - minor refactoring of code to support more output types
 
 1.0.1

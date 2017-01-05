@@ -26,22 +26,11 @@
 				<textbox size="100" id="url" oninput="updatePreview();"/>
 			</row>
 			<row align="center">
-				<label value="Target:"/>
-				<menulist id="target" oncommand="updatePreview();" editable="false" label="Please Choose">
-					<!-- _blank, _parent, _self, _top, framename http://www.w3schools.com/tags/att_a_target.asp or https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a -->
-					<menupopup>
-						<menuitem label="New Tab/Window" value="_blank"/>
-						<menuitem label="Parent Frame or Current Tab/Window" value="_parent"/>
-						<menuitem label="Current Frame (default)" value="_self"/>
-					</menupopup>
-				</menulist>
-			</row>
-			<row align="center">
 				<spacer flex="1"/>
 				<separator class="groove-thin"/>
 			</row>
-			<row>
-				<label control="typeselection" value="Output"/>
+			<row align="center">
+				<label control="typeselection" value="Output:"/>
 				<radiogroup id="typeselection" orient="horizontal">
 					<!-- Note: onclick fires before the actual change! -->
 					<radio value="0" oncommand="updateGeneric();" label="HTML" selected="true"/>
@@ -49,6 +38,26 @@
 					<radio value="2" oncommand="updateGeneric();" label="Wiki"/>
 					<radio value="3" oncommand="updateGeneric();" label="MediaWiki"/>
 				</radiogroup>
+			</row>
+			<row align="center">
+				<label control="relative-urls" value="Path Mode:"/>
+				<checkbox id="relative-urls" checked="false" label="Relative Path" oncommand="updatePreview();"/>
+			</row>
+			<row align="center">
+				<label value="Target:"/>
+				<menulist id="target" oncommand="updatePreview();" editable="false">
+					<!-- _blank, _parent, _self, _top, framename http://www.w3schools.com/tags/att_a_target.asp or https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a -->
+					<menupopup>
+						<menuitem label="New Tab/Window" value="_blank"/>
+						<menuitem label="Parent Frame or Current Tab/Window" value="_parent"/>
+						<menuitem label="Current Frame (default)" value="_self"/>
+						<menuitem label="No Target" value="None"/>
+					</menupopup>
+				</menulist>
+			</row>
+			<row align="center">
+				<spacer flex="1"/>
+				<separator class="groove-thin"/>
 			</row>
 			<row align="top">
 				<label value="Preview:"/>

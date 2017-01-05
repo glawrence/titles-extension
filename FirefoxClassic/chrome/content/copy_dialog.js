@@ -14,7 +14,8 @@ function onOK() {
    window.arguments[0].out = {url:document.getElementById("url").value,
         title:document.getElementById("title").value,
 		target:document.getElementById("target").value,
-		type:document.getElementById("typeselection").selectedIndex};
+		type:document.getElementById("typeselection").selectedIndex,
+		relurl:document.getElementById("relative-urls").checked};
    return true;
 }
 
@@ -42,6 +43,7 @@ function updatePreview() {
 	strTitle = document.getElementById("title").value;
 	strTarget = document.getElementById("target").value;
 	iOutputType = document.getElementById("typeselection").selectedIndex;
+	bRelativeUrls = document.getElementById("relative-urls").checked;
 	//alert(strTarget);
-	document.getElementById("preview").value = TitlesExtension.assembleURL(strURL, strTitle, strTarget, iOutputType);
+	document.getElementById("preview").value = TitlesExtension.assembleURL(strURL, strTitle, strTarget, iOutputType, bRelativeUrls);
 }
