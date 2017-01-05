@@ -12,7 +12,7 @@ These instructions currently only cover working with the classic XUL based exten
 * Close Firefox
 * Go to C:\Users\xxxxxxxx\AppData\Roaming\Mozilla\Firefox\Profiles\xxxxxxxx.dev-edition-default (where xxxxxxxx will vary)
 * Create extensions directory
-* Copy titles\@geoffdoesstuff.com file from DevTools
+* Copy `titles@geoffdoesstuff.com` file from DevTools
 * set xpinstall.signatures.required to False in about:config
 * got to about:addons and enable Titles Extension
 * restart Firefox
