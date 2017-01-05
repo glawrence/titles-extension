@@ -17,6 +17,6 @@ These instructions currently only cover working with the classic XUL based exten
 * got to about:addons and enable Titles Extension
 * restart Firefox
 * add button to toolbar
-* ready to go!
+* ready to develop!
 
 Now use a text editor to modify the files under C:\Dev\GitHub\titles-extension\FirefoxClassic although you will need to stop and start Firefox Developer Edition to see the changes. Then when you are ready execute Build-FirefoxClassic.cmd to package the extension ready for submission to the Mozilla Add On site.
