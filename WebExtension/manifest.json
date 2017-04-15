@@ -1,0 +1,25 @@
+{
+
+  "manifest_version": 2,
+  "name": "Titles Extension",
+  "version": "0.1.7",
+
+  "description": "The updated Titles Extension",
+  "homepage_url": "https://www.geoffdoesstuff.com/titles-extension",
+
+  "icons": {
+    "48": "icons/gds_logo_48.png"
+  },
+  
+  "permissions": [
+    "activeTab",
+	"tabs"
+  ],
+
+  "browser_action": {
+    "default_icon": "icons/gds_logo_32.png",
+    "default_title": "Titles Extension",
+    "default_popup": "popup/titles-extension-popup.html"
+  }
+
+}
