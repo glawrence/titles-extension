@@ -10,4 +10,5 @@ MOVE .\FirefoxClassic\%EXT_NAME% .
 
 %ZIP_DIR%\7z a %EXT_NAME% LICENSE
 
+ECHO All done
 PAUSE
