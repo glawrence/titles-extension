@@ -14,11 +14,35 @@
 		<div>&nbsp;</div>
 		<div>URL: <input id="inptUrl" type="text"></div>
 		<hr>
+		<label>Output: </label>
+			<input type="radio" name="typeselection" id="rdHtml"      value="0" checked>HTML
+			<input type="radio" name="typeselection" id="rdMarkdown"  value="1">Markdown
+			<input type="radio" name="typeselection" id="rdWiki"      value="2">Wiki
+			<input type="radio" name="typeselection" id="rdMediaWiki" value="3">MediaWiki
+			<br/>
+		<div>&nbsp;</div>
+			<label for="controlMode">Path Mode: </label>
+			<input type="checkbox" id="controlMode" name="controlMode" />
+			<br/>
+		<div>&nbsp;</div>
+		<label>Target: </label>
+			<select id="slctTarget" name="target">
+				<option value="_blank" selected>New Tab/Window</option>
+				<option value="_parent">Parent Frame or Current Tab/Window</option>
+				<option value="_self" >Current Frame (default)</option>
+				<option value="none">No Target</option>
+			</select>
+			<br/>
+		<hr>
 		<!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea -->
+		<label for="txtrResult">Preview: </label>
 		<textarea id="txtrResult"></textarea>
+		<div>&nbsp;</div>
+		<br/>
+		<button id="btnCopy">Copy</button>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<button id="btnCancel">Cancel</button>
 		<br>
-		<button id="btnCopy">Copy</button><br>
-		<a href="#" id="copy-link">Copy Link</a>
 	</body>
 
 </html>
