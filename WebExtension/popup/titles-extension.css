@@ -1,0 +1,14 @@
+html {
+	font-family: serif;
+	font-size: 10px;
+}
+
+h3 {
+	font-size: 2.6rem;
+	text-align: center;
+}
+
+label {
+	 font-size: 1.6rem;
+	 vertical-align: top;
+}

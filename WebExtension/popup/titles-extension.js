@@ -45,11 +45,15 @@ function clickCancelButton(event) {
 
 function doUpdateResultOutput(event) {
 	console.log("Executing doUpdateResultOutput()");
+	let oSlctTarget = document.getElementById('slctTarget');
 	let strTitle = document.getElementById('inptTitle').value;
 	let strUrl = document.getElementById('inptUrl').value;
-	let strTarget = document.getElementById('slctTarget').value;
+	let strTarget = oSlctTarget.value;
 	let strType = document.querySelector('input[name="typeselection"]:checked').value;
 	let bMode = document.getElementById("controlMode").checked;
+
+	oSlctTarget.disabled = (strType != 0); // disable the HTML specific items when not HTML type
+	document.getElementById("lblTarget").disabled = oSlctTarget.disabled;
 
 	let txtrResult = document.getElementById('txtrResult');
 	txtrResult.textContent = assembleURL(strUrl, strTitle, strTarget, strType, bMode);
