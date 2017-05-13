@@ -4,7 +4,7 @@ function onDOMContentLoaded() {
 	document.getElementById("inptTitle").addEventListener("input", doUpdateResultOutput);
 	document.getElementById("inptUrl").addEventListener("input", doUpdateResultOutput);
 	document.getElementById("slctTarget").addEventListener("change", doUpdateResultOutput);
-	document.getElementById("controlMode").addEventListener("change", doUpdateResultOutput);
+	document.getElementById("chckbxMode").addEventListener("change", doUpdateResultOutput);
 	document.getElementById("rdHtml").addEventListener("click", doUpdateResultOutput);
 	document.getElementById("rdMarkdown").addEventListener("click", doUpdateResultOutput);
 	document.getElementById("rdWiki").addEventListener("click", doUpdateResultOutput);
@@ -46,14 +46,18 @@ function clickCancelButton(event) {
 function doUpdateResultOutput(event) {
 	console.log("Executing doUpdateResultOutput()");
 	let oSlctTarget = document.getElementById('slctTarget');
+	let oChckbxMode = document.getElementById("chckbxMode");
+	
 	let strTitle = document.getElementById('inptTitle').value;
 	let strUrl = document.getElementById('inptUrl').value;
 	let strTarget = oSlctTarget.value;
 	let strType = document.querySelector('input[name="typeselection"]:checked').value;
-	let bMode = document.getElementById("controlMode").checked;
+	let bMode = oChckbxMode.checked;
 
 	oSlctTarget.disabled = (strType != 0); // disable the HTML specific items when not HTML type
 	document.getElementById("lblTarget").disabled = oSlctTarget.disabled;
+	oStrUrl = new String(strUrl);
+	oChckbxMode.disabled = !(oStrUrl.startsWith("http")); // disable checkbox for urls starting about, chrome etc
 
 	let txtrResult = document.getElementById('txtrResult');
 	txtrResult.textContent = assembleURL(strUrl, strTitle, strTarget, strType, bMode);
