@@ -13,5 +13,6 @@ The instructions for setting up your own development environment are in [BUILDIN
 Currently the Titles Extension has been developed as a classic Firefox Extension using XUL and JavaScript. The plan is to port this into a WebExtension and then easily support other browsers, however a quick initial look suggests this might not be possible, yet. In addition and more urgently I need to prepare for [Multiprocess Firefox](https://developer.mozilla.org/en-US/Firefox/Multiprocess_Firefox), aka Electrolysis or e10s. Clearly, like all responsible extension developers one needs to keep an eye on items in Mozilla's roadmap.
 
 # To Do
+* Add the option to copy all tabs, although this will need an extra option to skip titles
 * Convert build script to Python (to be cross platform)
 * Make version 2 as a [WebExtension](https://developer.mozilla.org/en-US/Add-ons/WebExtensions)

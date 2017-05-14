@@ -22,7 +22,8 @@ function onDOMContentLoaded() {
 			let txtrResult = document.getElementById('txtrResult');
 			doUpdateResultOutput(null);
 		} else {
-			//hmm, what do we do here?
+			// should never get here
+			console.log("There is no active tab!");
 		}
 
 	});

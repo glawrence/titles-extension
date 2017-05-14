@@ -1,0 +1,30 @@
+2.0.0
+- fundamental rewrite to work as a Web Extension, only core JavaScript logic reused (Issue #3)
+- improved UI to disable Relative Path checkbox with non http based protocols
+
+1.2.0
+- option to specify relative paths, rather than always absolute ones (Issue #5)
+- added a new option to the "Target" drop down list to remove the target attribute (Issue #4)
+- updated the dialog with a more logical order
+- minor improvement to control alignment
+
+1.1.0
+- added ability to select output type, HTML, Markdown, or Wiki (Issue #2)
+- minor refactoring of code to support more output types
+
+1.0.1
+- Add-On Homepage change
+- Version Compatibility update
+- Add LICENSE file to XPI
+
+1.0.0
+- bumped the version number to 1.0, otherwise identical to 0.3.1
+- uploaded to GitHub
+
+0.3.1
+- made Preview multiline to handle long page titles and urls
+- created function to assemble urls
+- updated Add On Description
+
+0.3.0
+- added dialog to allow customisation, rather than just straight to clipboard
