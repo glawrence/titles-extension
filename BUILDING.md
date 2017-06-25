@@ -1,4 +1,28 @@
 # Building Titles Extension
+
+## Current Version
+These steps apply to the latest Web Extension version of the Titles Extension
+
+* Start File Explorer
+* Create C:\Dev\GitHub
+* Go to [GitHub Desktop](https://desktop.github.com/)
+* Install GitHub Desktop
+* When GitHub Desktop starts then login
+* Set GitHub Desktop to use C:\Dev\GitHub for the Clone Path in the Settings
+* Clone titles-extension
+* Go to [Notepad++ Download - Current Version](https://notepad-plus-plus.org/download/)
+* Download and Install Notepad++ (32-bit to get better plugin support)
+* Go to [Mozilla Firefox Web Browser — Download Developer Edition](https://www.mozilla.org/en-US/firefox/developer/all/)
+* Install Firefox Developer Edition, the 64-bit edition works as well as 32-bit
+* Start Firefox
+* Browse to about:debugging#addons
+* Click "Load Temporary Add-on"
+* Browse to C:\Dev\GitHub\titles-extension\WebExtension and open manifest.json
+* add button to toolbar
+* ready to develop!
+
+
+## Old XUL Version
 These instructions currently only cover working with the classic XUL based extension and do not cover working with Web Extensions.
 
 * Start File Explorer
