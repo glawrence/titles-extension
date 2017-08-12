@@ -1,3 +1,6 @@
+2.1.0
+- added the "Copy All Tab URLs" button, which is a quick solution, need to add a better UI for this (Issue #9)
+
 2.0.0
 - fundamental rewrite to work as a Web Extension, only core JavaScript logic reused (Issue #3)
 - improved UI to disable Relative Path checkbox with non http based protocols
