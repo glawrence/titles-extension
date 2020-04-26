@@ -1,4 +1,22 @@
-var global_AllTabs;
+const browserFirefox  = "firefox";
+const browserChromium = "chromium";
+const browserUnknown  = "unknown";
+
+let global_AllTabs;
+let global_currentBrowser = browserUnknown;
+
+function detectCurrentBrowser() {
+	// Firefox has both chrome and browser as objects, but Chromium only has chrome and browser is undefined
+	if ((typeof (browser) == "object") && (typeof (chrome) == "object")) {
+		global_currentBrowser = browserFirefox;
+	} else if ((typeof (browser) == "undefined") && (typeof (chrome) == "object")) {
+		global_currentBrowser = browserChromium;
+	} else {
+		global_currentBrowser = browserUnknown;
+		console.log('ERROR: unknown browser Chrome: [' + typeof chrome + '] Browser: [' + typeof browser + ']');
+	}
+	console.log('Current browser is: ' + global_currentBrowser);
+}
 
 function onDOMContentLoaded() {
 	document.getElementById("btnCopy").addEventListener("click", clickCopyButton);
@@ -13,42 +31,41 @@ function onDOMContentLoaded() {
 	document.getElementById("rdWiki").addEventListener("click", doUpdateResultOutput);
 	document.getElementById("rdMediaWiki").addEventListener("click", doUpdateResultOutput);
 
-	getCurrentWindowTabs().then((tabs) => {
-		tab = tabs[0];
-		if (tab.active) {
-			console.log('Active Tab URL: ' + tab.url);
-
-			let inptTitle = document.getElementById('inptTitle');
-			inptTitle.value = tab.title;
-			let inptUrl = document.getElementById('inptUrl');
-			inptUrl.value = tab.url;
-			let txtrResult = document.getElementById('txtrResult');
-			doUpdateResultOutput(null);
-		} else {
-			// should never get here
-			console.log("There is no active tab!");
-		}
-
-	});
-	getCurrentWindowTabsAll().then((tabsAll) => {
-		console.log("Starting getCurrentWindowTabsAll");
-		global_AllTabs = tabsAll;
-	});
+	if (global_currentBrowser == browserChromium) {
+		chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+			populateUI(tabs[0]);
+		});
+		chrome.tabs.query({}, function(tabsAll) {
+			global_AllTabs = tabsAll;
+		});
+	} else if (global_currentBrowser == browserFirefox) {
+		browser.tabs.query({currentWindow: true, active: true}).then((tabs) => {
+			populateUI(tabs[0]);
+		});
+		browser.tabs.query({}).then((tabsAll) => {
+			global_AllTabs = tabsAll;
+		});
+	}
 }
 
-function getCurrentWindowTabs() {
-	return browser.tabs.query({currentWindow: true, active: true});
-}
+function populateUI(tab) {
+	if ((tab != null) && (tab.active)) {
+		console.log('Active Tab URL: ' + tab.url);
 
-function getCurrentWindowTabsAll() {
-	return browser.tabs.query({}); //this gets all tabs for all windows
+		let inptTitle = document.getElementById('inptTitle');
+		inptTitle.value = tab.title;
+		let inptUrl = document.getElementById('inptUrl');
+		inptUrl.value = tab.url;
+		let txtrResult = document.getElementById('txtrResult');
+		doUpdateResultOutput(null);
+	} else {
+		// should never get here
+		console.log("There is no active tab!");
+	}
 }
 
 function clickCopyButton(event) {
-	let txtrResult = document.getElementById('txtrResult');
-	txtrResult.select();
-	document.execCommand("copy");
-	window.close(); //close the popup
+	copyResultsToClipboardAndClose();
 }
 
 function clickCopyAllButton(event) {
@@ -73,6 +90,11 @@ function clickCopyAllButton(event) {
 		txtOutput += "\n";
 	}
 	txtrResult.textContent = txtOutput;
+	copyResultsToClipboardAndClose();
+}
+
+function copyResultsToClipboardAndClose() {
+	let txtrResult = document.getElementById('txtrResult');
 	txtrResult.select();
 	document.execCommand("copy");
 	window.close(); //close the popup
@@ -138,4 +160,5 @@ function assembleURL(theURL, theTitle, theTarget, theType, bRelUrl) {
 	return strResult;
 }
 
+detectCurrentBrowser();
 document.addEventListener("DOMContentLoaded", onDOMContentLoaded);
