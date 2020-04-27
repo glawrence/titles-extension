@@ -1,7 +1,8 @@
 # Building Titles Extension
+These are mostly notes to work as a reminder for me, this is because there is often a large gap between versions and hence I forget stuff I should know.
 
-## Current Version
-These steps apply to the latest Web Extension version of the Titles Extension
+## Getting the Code
+As ever there are multiple ways to do this, the easy, visual way is like this:
 
 * Start File Explorer
 * Create C:\Dev\GitHub
@@ -10,43 +11,47 @@ These steps apply to the latest Web Extension version of the Titles Extension
 * When GitHub Desktop starts then login
 * Set GitHub Desktop to use C:\Dev\GitHub for the Clone Path in the Settings
 * Clone titles-extension
-* Go to [Notepad++ Download - Current Version](https://notepad-plus-plus.org/download/)
-* Download and Install Notepad++ (32-bit to get better plugin support)
-* Go to [Mozilla Firefox Web Browser — Download Developer Edition](https://www.mozilla.org/en-US/firefox/developer/all/)
-* Install Firefox Developer Edition, the 64-bit edition works as well as 32-bit
+
+However I do like Visual Studio Code...
+
+* Install Git from [Git - Downloads](https://git-scm.com/downloads)
+* Load Visual Studio Code and make sure all existing work is closed
+* In VS Code execute the command `Git: Clone`
+* Paste in the URL, `https://github.com/glawrence/titles-extension.git`
+* Select the directory C:\Dev\GitHub
+* The repository will be cloned into C:\Dev\GitHub\titles-extension
+* Then just open the folder in VS Code
+
+## Editing the Code
+My recommendation is to use [Visual Studio Code - Code Editing. Redefined](https://code.visualstudio.com/) for editing the code, although you can use [Notepad++ Download - Current Version](https://notepad-plus-plus.org/download/), in which case download and install Notepad++ 32-bit to get better plugin support.
+
+## Testing the Extension
+I am now supporting two primary browsers. Firefox and Microsoft Edge (Chromium), so I need to explain how to test an extension in both:
+
+### Firefox Testing
+You can use the release version of Firefox but I prefer to use the Developer Edition
+
+* Go to [Mozilla Firefox Web Browser — Download Developer Edition](https://www.mozilla.org/firefox/all/#product-desktop-developer)
+* Install Firefox Developer Edition, the 64-bit edition works great
 * Start Firefox
-* Browse to about:debugging#addons
-* Click "Load Temporary Add-on"
+* Select "Add-ons" from the "3 Bar Menu"
+* Click the settings cog and select "Debug Add-ons"
+* Then click the "Load Temporary Add-on..." button
 * Browse to C:\Dev\GitHub\titles-extension\WebExtension and open manifest.json
-* add button to toolbar
-* ready to develop!
+* You can then click the "Inspect" button which is handy to help debug JavaScript issues or markup problems
+* Now you can make changes and easily reload the extension
 
+### Edge Testing
+Microsoft do not have a "developer" edition, so I have worked with the release version, but clearly you could use the Beta channel.
 
-## Old XUL Version
-These instructions currently only cover working with the classic XUL based extension and do not cover working with Web Extensions.
+* Go to [Download New Microsoft Edge Browser | Microsoft](https://www.microsoft.com/edge/)
+* Install Microsoft Edge, although you might already have this on Windows 10, once the update to deploy Edge (Chromium) has been rolled out
+* Load Edge and click on the "3 dots" menu and select "Extensions"
+* Turn on "Developer Mode"
+* Click "Load unpacked" and select C:\Dev\GitHub\titles-extension\WebExtension
+* The extension should load and the buttno should be visible
+* Right click the button and select "Inspect pop-up window"
+* Now you can make changes and easily reload the extension
 
-* Start File Explorer
-* Create C:\Dev\GitHub
-* Go to [GitHub Desktop](https://desktop.github.com/)
-* Install GitHub Desktop
-* When GitHub Desktop starts then login
-* Set GitHub Desktop to use C:\Dev\GitHub for the Clone Path in the Settings
-* Clone titles-extension
-* Install [7-Zip](http://www.7-zip.org/) (for the packaging script)
-* Go to [Notepad++ Download - Current Version](https://notepad-plus-plus.org/download/)
-* Download and Install Notepad++ (32-bit to get better plugin support)
-* Go to [Mozilla Firefox Web Browser — Download Developer Edition](https://www.mozilla.org/en-US/firefox/developer/all/)
-* Install Firefox Developer Edition, the 64-bit edition works as well as 32-bit
-* Start Firefox
-* Select "Troubleshooting Information" from the help menu, locate "Profile Folder" and click the "Open Folder" button
-* Create extensions sub-directory
-* Close Firefox
-* Copy `titles@geoffdoesstuff.com` file from C:\Dev\GitHub\title-extension\DevTools
-* Start Firefox
-* set xpinstall.signatures.required to False in about:config
-* got to about:addons and enable Titles Extension
-* restart Firefox
-* add button to toolbar
-* ready to develop!
-
-Now use a text editor to modify the files under C:\Dev\GitHub\titles-extension\FirefoxClassic although you will need to stop and start Firefox Developer Edition to see the changes. Then when you are ready execute Build-FirefoxClassic.cmd to package the extension ready for submission to the Mozilla Add On site.
+## Releasing
+Currently the release process only runs on Windows and also relies on [7-Zip](https://www.7-zip.org/).

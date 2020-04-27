@@ -1,3 +1,6 @@
+2.5.0
+- updated WebExtension to also support Chromium based browsers (Issue #10)
+
 2.1.0
 - added the "Copy All Tab URLs" button, which is a quick solution, need to add a better UI for this (Issue #9)
 
