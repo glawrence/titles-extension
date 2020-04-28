@@ -54,4 +54,21 @@ Microsoft do not have a "developer" edition, so I have worked with the release v
 * Now you can make changes and easily reload the extension
 
 ## Releasing
-Currently the release process only runs on Windows and also relies on [7-Zip](https://www.7-zip.org/).
+Currently the release process only runs on Windows and also relies on [7-Zip](https://www.7-zip.org/). The step are as follows:
+
+* Execute `Build-WebExtension.cmd` to produce `Titles-Extension.zip`
+* In GitHub, go to [Releases · glawrence/titles-extension](https://github.com/glawrence/titles-extension/releases) and click "Draft a new release"
+* Put the new version number in the "Tag version" box, for example "2.5.0"
+* Set the Release Title to something like "Titles Extension - 2.5.0"
+* Add some explanatory text, including links to any resolved issues
+* Drag the file `Titles-Extension.zip` into the release
+* Publish the release
+
+### Firefox Add-ons
+* Login to [Add-ons for Firefox (en-GB)](https://addons.mozilla.org/en-GB/firefox/)
+* Got to [Manage My Submissions :: Developer Hub :: Add-ons for Firefox](https://addons.mozilla.org/en-GB/developers/addons) and click on the extension
+* Click the option to "Upload a new version"
+* Follow the instructions....
+
+### Edge Extensions
+This is documented at  [Publish An Extension - Microsoft Edge Development | Microsoft Docs](https://docs.microsoft.com/en-us/microsoft-edge/extensions-chromium/publish/publish-extension).
