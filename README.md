@@ -1,7 +1,9 @@
 # Titles Extension
 A browser extension to get web page Titles with URLs and then format them for easy use on a website or content management system by generating the HTML or giving alternative output like Markdown. Whilst designed for my personal use with my Drupal site this should work in a variety of situations and therefore be of use to other people.
 
-The best place to get Titles Extension from is [Titles Extension :: Add-ons for Firefox](https://addons.mozilla.org/en-GB/firefox/addon/titles-extension/) as this is where the official, signed release is, that you can easily install into your Firefox.
+If you are a Mozilla Firefox user then the best place to get Titles Extension from is [Titles Extension :: Add-ons for Firefox](https://addons.mozilla.org/en-GB/firefox/addon/titles-extension/) as this is where the official, signed release is, that you can easily install into your Firefox.
+
+If you use Microsoft Edge, the Chromium based version then [Titles Extension - Microsoft Edge Addons](https://microsoftedge.microsoft.com/addons/detail/nghbhnepijikinkbkdockjckjlfinfke) is the best place to get Titles Extension.
 
 # Building
 The instructions for setting up your own development environment are in [BUILDING.md](BUILDING.md) which explains everything you need to do for modifying Titles Extension. This includes how to work with the old XUL style add-on even thought this has been replaced by the new Web Extension version.
