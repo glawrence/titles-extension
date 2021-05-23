@@ -9,7 +9,7 @@ If you use Microsoft Edge, the Chromium based version then [Titles Extension - M
 The instructions for setting up your own development environment are in [BUILDING.md](BUILDING.md) which explains everything you need to do for modifying Titles Extension. This includes how to work with the old XUL style add-on even thought this has been replaced by the new Web Extension version.
 
 # Issues
-* No significant issues at present
+* No significant known issues at present'
 
 # Plans
 Now that the original XUL based add-on has been written as a Web Extension then I have some new plans. Generally, I would like to add some new features and improve the user interface. However now that it is a Web Extension, I would like to support other browsers, however a quick initial look suggests this might not be possible, yet.
@@ -18,6 +18,7 @@ Now that the original XUL based add-on has been written as a Web Extension then 
 * <strike>Add the option to copy all tabs, although this will need an extra option to skip titles</strike>
 * Convert build script to Python (to be cross platform)
 * Update how the clipboard is used, I believe Firefox at least has an API now
+* Improve how the layout is done, so that it renders well across browsers and operating systems
 
 # History
 This is a brief history of my Titles Extension
@@ -33,3 +34,6 @@ This is the new Web Extension version and is currently supported in the latest v
 
 ## Version 2.5
 There is no functional change in this release. All that has changed is that I have added support for Chromium based browsers. Whilst I did the development and testing with Microsoft Edge, I have also checked it works with Google Chrome and Brave.
+
+## Version 2.6
+Added an extra output format to support Atlassian tools.

@@ -34,7 +34,7 @@ You can use the release version of Firefox but I prefer to use the Developer Edi
 * Go to [Mozilla Firefox Web Browser — Download Developer Edition](https://www.mozilla.org/firefox/all/#product-desktop-developer)
 * Install Firefox Developer Edition, the 64-bit edition works great
 * Start Firefox
-* Select "Add-ons" from the "3 Bar Menu"
+* Select "Add-ons and Themes" from the "3 Bar Menu"
 * Click the settings cog and select "Debug Add-ons"
 * Then click the "Load Temporary Add-on..." button
 * Browse to C:\Dev\GitHub\titles-extension\WebExtension and open manifest.json
@@ -49,7 +49,7 @@ Microsoft do not have a "developer" edition, so I have worked with the release v
 * Load Edge and click on the "3 dots" menu and select "Extensions"
 * Turn on "Developer Mode"
 * Click "Load unpacked" and select C:\Dev\GitHub\titles-extension\WebExtension
-* The extension should load and the buttno should be visible
+* The extension should load and the button should be visible
 * Right click the button and select "Inspect pop-up window"
 * Now you can make changes and easily reload the extension
 

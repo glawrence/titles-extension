@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Titles Extension",
-  "version": "2.5.1",
+  "version": "2.6.0",
 
   "description": "Extension to get page titles and urls and format them as HTML, Markdown or for a Wiki to speed up and improve copying links",
   "homepage_url": "https://www.geoffdoesstuff.com/titles-extension",

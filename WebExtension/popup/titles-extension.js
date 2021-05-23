@@ -30,6 +30,7 @@ function onDOMContentLoaded() {
 	document.getElementById("rdMarkdown").addEventListener("click", doUpdateResultOutput);
 	document.getElementById("rdWiki").addEventListener("click", doUpdateResultOutput);
 	document.getElementById("rdMediaWiki").addEventListener("click", doUpdateResultOutput);
+	document.getElementById("rdWikiMarkup").addEventListener("click", doUpdateResultOutput);
 
 	if (global_currentBrowser == browserChromium) {
 		chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
@@ -152,6 +153,9 @@ function assembleURL(theURL, theTitle, theTarget, theType, bRelUrl) {
 			break;
 		case 3:
 			strResult = '[' + strURL + ' ' + theTitle + ']';
+			break;
+		case 4:
+			strResult = '[' + strURL + '|' + theTitle + ']';
 			break;
 		default:
 			strResult = "Unknown!";
