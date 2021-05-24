@@ -10,47 +10,64 @@
 		<h3>The Titles Extension</h3>
 		<script src="titles-extension.js"></script>
 
-		<label>Title: <input id="inptTitle" type="text" size="50" /></label>
-		<div>&nbsp;</div>
-		<label>URL: <input id="inptUrl" type="text" size="50" /></label>
+		<div class="container">
+			<label for="inptTitle">Title:</label>
+			<input id="inptTitle" type="text" size="50" />
+			<label for="inptUrl">URL:</label>
+			<input id="inptUrl" type="text" size="50" />
+		</div>
+
 		<hr/>
-		<label>Output: </label>
-		<input type="radio" name="typeselection" id="rdHtml"      value="0" checked />
-		<label for="rdHtml">HTML</label>
-		<input type="radio" name="typeselection" id="rdMarkdown"  value="1" />
-		<label for="rdMarkdown">Markdown</label>
-		<input type="radio" name="typeselection" id="rdWiki"      value="2" />
-		<label for="rdWiki">Wiki</label>
-		<input type="radio" name="typeselection" id="rdMediaWiki" value="3" />
-		<label for="rdMediaWiki">MediaWiki</label>
-		<input type="radio" name="typeselection" id="rdWikiMarkup" value="4"  title="for Atlassian Tools"/>
-		<label for="rdWikiMarkup" title="for Atlassian Tools">Wiki Markup</label>
-		<br/>
-		<div>&nbsp;</div>
-		<label for="chckbxMode">Path Mode:
-			<input type="checkbox" id="chckbxMode" name="controlMode">Relative Path</input>
-		</label>
-		<br/>
-		<div>&nbsp;</div>
-		<label id="lblTarget">Target: </label>
-			<select id="slctTarget" name="target">
-				<option value="_blank" selected>New Tab/Window</option>
-				<option value="_parent">Parent Frame or Current Tab/Window</option>
-				<option value="_self">Current Frame (default)</option>
-				<option value="none">No Target</option>
-			</select>
+
+		<div class="container">
+			<div>
+				<label>Output: </label>
+			</div>
+			<div>
+				<input type="radio" name="typeselection" id="rdHtml"      value="0" checked />
+				<label for="rdHtml">HTML</label>
+				<input type="radio" name="typeselection" id="rdMarkdown"  value="1" />
+				<label for="rdMarkdown">Markdown</label>
+				<input type="radio" name="typeselection" id="rdWiki"      value="2" />
+				<label for="rdWiki">Wiki</label>
+				<input type="radio" name="typeselection" id="rdMediaWiki" value="3" />
+				<label for="rdMediaWiki">MediaWiki</label>
+				<input type="radio" name="typeselection" id="rdWikiMarkup" value="4"  title="for Atlassian Tools"/>
+				<label for="rdWikiMarkup" title="for Atlassian Tools">Wiki Markup</label>
+			</div>
+			<div>
+				<label>Path Mode:</label>
+			</div>
+			<div>
+				<input type="checkbox" id="chckbxMode" name="controlMode" />
+				<label id="lblMode" for="chckbxMode">Relative Path</label>
+			</div>
+			<div>
+				<label id="lblTarget">Target: </label>
+			</div>
+			<div>
+				<select id="slctTarget" name="target">
+					<option value="_blank" selected>New Tab/Window</option>
+					<option value="_parent">Parent Frame or Current Tab/Window</option>
+					<option value="_self">Current Frame (default)</option>
+					<option value="none">No Target</option>
+				</select>
+			</div>
+		</div>
+
 		<hr/>
-		<!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea -->
-		<label for="txtrResult">Preview:</label>
-		<textarea id="txtrResult" cols="40" rows="7" readonly="true"></textarea>
-		<div>&nbsp;</div>
-		<br/>
-		<button id="btnCopy">Copy</button>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<button id="btnCopyAll">Copy All Tab URLs</button>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<button id="btnCancel">Cancel</button>
-		<br/>
+
+		<div class="container">
+			<!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea -->
+			<label for="txtrResult">Preview:</label>
+			<textarea id="txtrResult" cols="40" rows="7" readonly="true"></textarea>
+		</div>
+
+		<div class="buttonbar">
+			<button id="btnCopy">Copy</button>
+			<button id="btnCopyAll">Copy All Tab URLs</button>
+			<button id="btnCancel">Cancel</button>
+		</div>
 	</body>
 
 </html>

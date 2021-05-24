@@ -9,7 +9,7 @@ If you use Microsoft Edge, the Chromium based version then [Titles Extension - M
 The instructions for setting up your own development environment are in [BUILDING.md](BUILDING.md) which explains everything you need to do for modifying Titles Extension. This includes how to work with the old XUL style add-on even thought this has been replaced by the new Web Extension version.
 
 # Issues
-* No significant known issues at present'
+* No significant known issues at present
 
 # Plans
 Now that the original XUL based add-on has been written as a Web Extension then I have some new plans. Generally, I would like to add some new features and improve the user interface. However now that it is a Web Extension, I would like to support other browsers, however a quick initial look suggests this might not be possible, yet.

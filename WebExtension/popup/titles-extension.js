@@ -33,7 +33,7 @@ function onDOMContentLoaded() {
 	document.getElementById("rdWikiMarkup").addEventListener("click", doUpdateResultOutput);
 
 	if (global_currentBrowser == browserChromium) {
-		chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+		chrome.tabs.query({currentWindow: true, active: true}, function(tabs) {
 			populateUI(tabs[0]);
 		});
 		chrome.tabs.query({}, function(tabsAll) {
@@ -116,10 +116,26 @@ function doUpdateResultOutput(event) {
 	let strType = document.querySelector('input[name="typeselection"]:checked').value;
 	let bMode = oChckbxMode.checked;
 
-	oSlctTarget.disabled = (strType != 0); // disable the HTML specific items when not HTML type
-	document.getElementById("lblTarget").disabled = oSlctTarget.disabled;
+	let oLblTarget = document.getElementById("lblTarget");
+	// disable the HTML specific items when not HTML type
+	if (strType != 0) {
+		oSlctTarget.disabled = true;
+		oLblTarget.style.color = "DimGray";
+	} else {
+		oSlctTarget.disabled = false;
+		oLblTarget.style.color = "Black";
+	}
+
+	let oLblMode = document.getElementById("lblMode");
 	oStrUrl = new String(strUrl);
-	oChckbxMode.disabled = !(oStrUrl.startsWith("http")); // disable checkbox for urls starting about, chrome etc
+	// disable checkbox for urls starting about, chrome etc
+	if ( !(oStrUrl.startsWith("http")) ) {
+		oChckbxMode.disabled = true;
+		oLblMode.style.color = "DimGray";
+	} else {
+		oChckbxMode.disabled = false; 
+		oLblMode.style.color = "Black";
+	}
 
 	let txtrResult = document.getElementById('txtrResult');
 	txtrResult.textContent = assembleURL(strUrl, strTitle, strTarget, strType, bMode);
