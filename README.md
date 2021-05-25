@@ -36,4 +36,4 @@ This is the new Web Extension version and is currently supported in the latest v
 There is no functional change in this release. All that has changed is that I have added support for Chromium based browsers. Whilst I did the development and testing with Microsoft Edge, I have also checked it works with Google Chrome and Brave.
 
 ## Version 2.6
-Added an extra output format to support Atlassian tools.
+Added an extra output format to support Atlassian tools, as well as some new buttons.

@@ -1,5 +1,7 @@
 2.6.0
-- Added output format to support Atlassian tools (Issue #13)
+- added output format to support Atlassian tools (Issue #13)
+- added two new buttons to easily copy the page title or page url (Issue #14, partial)
+- some JavaScript refactoring to remove duplication and aid readability
 
 2.5.1
 - updated the manifest file with a shorter description to adhere to Chromium standards

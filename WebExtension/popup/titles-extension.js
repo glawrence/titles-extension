@@ -20,6 +20,8 @@ function detectCurrentBrowser() {
 
 function onDOMContentLoaded() {
 	document.getElementById("btnCopy").addEventListener("click", clickCopyButton);
+	document.getElementById("btnCopyTitle").addEventListener("click", clickCopyButton);
+	document.getElementById("btnCopyUrl").addEventListener("click", clickCopyButton);
 	document.getElementById("btnCopyAll").addEventListener("click", clickCopyAllButton);
 	document.getElementById("btnCancel").addEventListener("click", clickCancelButton);
 	document.getElementById("inptTitle").addEventListener("input", doUpdateResultOutput);
@@ -66,7 +68,23 @@ function populateUI(tab) {
 }
 
 function clickCopyButton(event) {
-	copyResultsToClipboardAndClose();
+	let srcId = event.srcElement.id;
+	if (srcId === "btnCopyTitle") {
+		copyElementTextToClipboard("inptTitle")
+	} else if (srcId === "btnCopyUrl") {
+		copyElementTextToClipboard("inptUrl")
+	} else if (srcId === "btnCopy") {
+		copyElementTextToClipboard('txtrResult');
+	} else {
+		console.error("Copy Unknown!");
+	}
+	closeExtensionWindow();
+}
+
+function copyElementTextToClipboard(elementId) {
+	let txtElement = document.getElementById(elementId);
+	txtElement.select();
+	document.execCommand("copy");
 }
 
 function clickCopyAllButton(event) {
@@ -91,17 +109,15 @@ function clickCopyAllButton(event) {
 		txtOutput += "\n";
 	}
 	txtrResult.textContent = txtOutput;
-	copyResultsToClipboardAndClose();
-}
-
-function copyResultsToClipboardAndClose() {
-	let txtrResult = document.getElementById('txtrResult');
-	txtrResult.select();
-	document.execCommand("copy");
-	window.close(); //close the popup
+	copyElementTextToClipboard('txtrResult');
+	closeExtensionWindow();
 }
 
 function clickCancelButton(event) {
+	closeExtensionWindow();
+}
+
+function closeExtensionWindow() {
 	window.close(); //close the popup
 }
 
