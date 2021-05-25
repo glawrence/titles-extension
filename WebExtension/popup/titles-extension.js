@@ -5,19 +5,6 @@ const browserUnknown  = "unknown";
 let global_AllTabs;
 let global_currentBrowser = browserUnknown;
 
-function detectCurrentBrowser() {
-	// Firefox has both chrome and browser as objects, but Chromium only has chrome and browser is undefined
-	if ((typeof (browser) == "object") && (typeof (chrome) == "object")) {
-		global_currentBrowser = browserFirefox;
-	} else if ((typeof (browser) == "undefined") && (typeof (chrome) == "object")) {
-		global_currentBrowser = browserChromium;
-	} else {
-		global_currentBrowser = browserUnknown;
-		console.log('ERROR: unknown browser Chrome: [' + typeof chrome + '] Browser: [' + typeof browser + ']');
-	}
-	console.log('Current browser is: ' + global_currentBrowser);
-}
-
 function onDOMContentLoaded() {
 	document.getElementById("btnCopy").addEventListener("click", clickCopyButton);
 	document.getElementById("btnCopyTitle").addEventListener("click", clickCopyButton);
@@ -28,6 +15,8 @@ function onDOMContentLoaded() {
 	document.getElementById("inptUrl").addEventListener("input", doUpdateResultOutput);
 	document.getElementById("slctTarget").addEventListener("change", doUpdateResultOutput);
 	document.getElementById("chckbxMode").addEventListener("change", doUpdateResultOutput);
+	document.getElementById("chckbxUrlOnly").addEventListener("change", doUpdateResultOutput);
+	document.getElementById("chckbxRemoveQuery").addEventListener("change", doUpdateResultOutput);
 	document.getElementById("rdHtml").addEventListener("click", doUpdateResultOutput);
 	document.getElementById("rdMarkdown").addEventListener("click", doUpdateResultOutput);
 	document.getElementById("rdWiki").addEventListener("click", doUpdateResultOutput);
@@ -72,6 +61,10 @@ function clickCopyButton(event) {
 	if (srcId === "btnCopyTitle") {
 		copyElementTextToClipboard("inptTitle")
 	} else if (srcId === "btnCopyUrl") {
+		let bRelative = document.getElementById("chckbxMode").checked;
+		let bRemoveQuery = document.getElementById("chckbxRemoveQuery").checked;
+		let oUrl = document.getElementById('inptUrl');
+		oUrl.value = processPathModes(oUrl.value, bRelative, bRemoveQuery);
 		copyElementTextToClipboard("inptUrl")
 	} else if (srcId === "btnCopy") {
 		copyElementTextToClipboard('txtrResult');
@@ -79,12 +72,6 @@ function clickCopyButton(event) {
 		console.error("Copy Unknown!");
 	}
 	closeExtensionWindow();
-}
-
-function copyElementTextToClipboard(elementId) {
-	let txtElement = document.getElementById(elementId);
-	txtElement.select();
-	document.execCommand("copy");
 }
 
 function clickCopyAllButton(event) {
@@ -115,10 +102,6 @@ function clickCopyAllButton(event) {
 
 function clickCancelButton(event) {
 	closeExtensionWindow();
-}
-
-function closeExtensionWindow() {
-	window.close(); //close the popup
 }
 
 function doUpdateResultOutput(event) {
@@ -153,20 +136,37 @@ function doUpdateResultOutput(event) {
 		oLblMode.style.color = "Black";
 	}
 
+	let bUrlOnly = document.getElementById("chckbxUrlOnly").checked;
+	let bRemoveQuery = document.getElementById("chckbxRemoveQuery").checked;
 	let txtrResult = document.getElementById('txtrResult');
-	txtrResult.textContent = assembleURL(strUrl, strTitle, strTarget, strType, bMode);
+	txtrResult.textContent = assembleURL(strUrl, strTitle, strTarget, strType, bMode, bUrlOnly, bRemoveQuery);
 	console.log("Completed doUpdateResultOutput()");
 }
 
-function assembleURL(theURL, theTitle, theTarget, theType, bRelUrl) {
-	console.log('Assembling the Output');
-	strResult = "";
-	if (bRelUrl) {
-		urlComplete = new URL(theURL);
+function processPathModes(inputURL, bRelative, bNoQuery) {
+	urlComplete = new URL(inputURL);
+	strURL = inputURL;
+	if (bNoQuery) {
+		strURL = urlComplete.origin + urlComplete.pathname;
+	}
+	if (bRelative) {
 		iBaseLen = urlComplete.origin.length;
 		strURL = '.' + urlComplete.href.substr(iBaseLen);
-	} else {
-		strURL = theURL;
+	}
+	if (bNoQuery && bRelative) {
+		strURL = '.' + urlComplete.pathname;
+	}
+	return strURL;
+}
+
+function assembleURL(theURL, theTitle, theTarget, theType, bRelUrl, bOnlyUrl, bRemoveQuery) {
+	console.log('Assembling the Output');
+	strResult = "";
+
+	strURL = processPathModes(theURL, bRelUrl, bRemoveQuery);
+
+	if (bOnlyUrl) {
+		theTitle = strURL;
 	}
 	let iType = parseInt(theType);
 	switch (iType) {
@@ -194,6 +194,29 @@ function assembleURL(theURL, theTitle, theTarget, theType, bRelUrl) {
 			break;
 	}
 	return strResult;
+}
+
+function copyElementTextToClipboard(elementId) {
+	let txtElement = document.getElementById(elementId);
+	txtElement.select();
+	document.execCommand("copy");
+}
+
+function closeExtensionWindow() {
+	window.close(); //close the popup
+}
+
+function detectCurrentBrowser() {
+	// Firefox has both chrome and browser as objects, but Chromium only has chrome and browser is undefined
+	if ((typeof (browser) == "object") && (typeof (chrome) == "object")) {
+		global_currentBrowser = browserFirefox;
+	} else if ((typeof (browser) == "undefined") && (typeof (chrome) == "object")) {
+		global_currentBrowser = browserChromium;
+	} else {
+		global_currentBrowser = browserUnknown;
+		console.log('ERROR: unknown browser Chrome: [' + typeof chrome + '] Browser: [' + typeof browser + ']');
+	}
+	console.log('Current browser is: ' + global_currentBrowser);
 }
 
 detectCurrentBrowser();

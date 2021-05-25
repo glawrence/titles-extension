@@ -1,6 +1,8 @@
 2.6.0
 - added output format to support Atlassian tools (Issue #13)
 - added two new buttons to easily copy the page title or page url (Issue #14, partial)
+- added new option to use url instead of the title (Issue #14, partial)
+- added option to remove query parameters (Issue 15)
 - some JavaScript refactoring to remove duplication and aid readability
 
 2.5.1

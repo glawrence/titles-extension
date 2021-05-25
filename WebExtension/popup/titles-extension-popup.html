@@ -41,6 +41,8 @@
 			<div>
 				<input type="checkbox" id="chckbxMode" name="controlMode" />
 				<label id="lblMode" for="chckbxMode">Relative Path</label>
+				<input type="checkbox" id="chckbxRemoveQuery" name="controlRemoveQuery" />
+				<label id="lblRemoveQuery" for="chckbxRemoveQuery">Remove Query</label>
 			</div>
 			<div>
 				<label id="lblTarget">Target: </label>
@@ -52,6 +54,13 @@
 					<option value="_self">Current Frame (default)</option>
 					<option value="none">No Target</option>
 				</select>
+			</div>
+			<div>
+				<label>Options:</label>
+			</div>
+			<div>
+				<input type="checkbox" id="chckbxUrlOnly" name="controlUrlOnly" title="Make the title match the URL"/>
+				<label id="lblUrlOnly" for="chckbxUrlOnly" title="Make the title match the URL">URL Only</label>
 			</div>
 		</div>
 
