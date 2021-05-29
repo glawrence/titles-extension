@@ -56,6 +56,9 @@ Microsoft do not have a "developer" edition, so I have worked with the release v
 ## Releasing
 Currently the release process only runs on Windows and also relies on [7-Zip](https://www.7-zip.org/). The step are as follows:
 
+* Make sure all changes are committed to git and pushed to GitHub
+* If necessary, merge the working branch into the main branch
+* Apply a tag to git and push this to GitHub (`git tag '2.5.0'` then `git push --tags`)
 * Execute `Build-WebExtension.cmd` to produce `Titles-Extension.zip`
 * In GitHub, go to [Releases · glawrence/titles-extension](https://github.com/glawrence/titles-extension/releases) and click "Draft a new release"
 * Put the new version number in the "Tag version" box, for example "2.5.0"
@@ -63,6 +66,8 @@ Currently the release process only runs on Windows and also relies on [7-Zip](ht
 * Add some explanatory text, including links to any resolved issues
 * Drag the file `Titles-Extension.zip` into the release
 * Publish the release
+* Close any fixed GitHub Issues
+* Publish the new version as below for Firefox and Edge
 
 ### Firefox Add-ons
 * Login to [Add-ons for Firefox (en-GB)](https://addons.mozilla.org/en-GB/firefox/)
@@ -71,4 +76,4 @@ Currently the release process only runs on Windows and also relies on [7-Zip](ht
 * Follow the instructions....
 
 ### Edge Extensions
-This is documented at  [Publish An Extension - Microsoft Edge Development | Microsoft Docs](https://docs.microsoft.com/en-us/microsoft-edge/extensions-chromium/publish/publish-extension).
+This is documented at  [Publish An Extension - Microsoft Edge Development | Microsoft Docs](https://docs.microsoft.com/en-us/microsoft-edge/extensions-chromium/publish/publish-extension) but the key site is [Partner Center](https://partner.microsoft.com/en-us/dashboard/microsoftedge/overview).
