@@ -14,9 +14,10 @@ function onDOMContentLoaded() {
 	document.getElementById("inptTitle").addEventListener("input", doUpdateResultOutput);
 	document.getElementById("inptUrl").addEventListener("input", doUpdateResultOutput);
 	document.getElementById("slctTarget").addEventListener("change", doUpdateResultOutput);
-	document.getElementById("chckbxMode").addEventListener("change", doUpdateResultOutput);
 	document.getElementById("chckbxUrlOnly").addEventListener("change", doUpdateResultOutput);
+	document.getElementById("chckbxRemoveOrigin").addEventListener("change", doUpdateResultOutput);
 	document.getElementById("chckbxRemoveQuery").addEventListener("change", doUpdateResultOutput);
+	document.getElementById("chckbxRemoveFragment").addEventListener("change", doUpdateResultOutput);
 	document.getElementById("rdHtml").addEventListener("click", doUpdateResultOutput);
 	document.getElementById("rdMarkdown").addEventListener("click", doUpdateResultOutput);
 	document.getElementById("rdWiki").addEventListener("click", doUpdateResultOutput);
@@ -61,7 +62,7 @@ function clickCopyButton(event) {
 	if (srcId === "btnCopyTitle") {
 		copyElementTextToClipboard("inptTitle")
 	} else if (srcId === "btnCopyUrl") {
-		let bRelative = document.getElementById("chckbxMode").checked;
+		let bRelative = document.getElementById("chckbxRemoveOrigin").checked;
 		let bRemoveQuery = document.getElementById("chckbxRemoveQuery").checked;
 		let oUrl = document.getElementById('inptUrl');
 		oUrl.value = processPathModes(oUrl.value, bRelative, bRemoveQuery);
@@ -107,13 +108,13 @@ function clickCancelButton(event) {
 function doUpdateResultOutput(event) {
 	console.log("Executing doUpdateResultOutput()");
 	let oSlctTarget = document.getElementById('slctTarget');
-	let oChckbxMode = document.getElementById("chckbxMode");
+	let oChckbxRemoveOrigin = document.getElementById("chckbxRemoveOrigin");
 	
 	let strTitle = document.getElementById('inptTitle').value;
 	let strUrl = document.getElementById('inptUrl').value;
 	let strTarget = oSlctTarget.value;
 	let strType = document.querySelector('input[name="typeselection"]:checked').value;
-	let bMode = oChckbxMode.checked;
+	let bRemoveOrigin = oChckbxRemoveOrigin.checked;
 
 	let oLblTarget = document.getElementById("lblTarget");
 	// disable the HTML specific items when not HTML type
@@ -125,45 +126,52 @@ function doUpdateResultOutput(event) {
 		oLblTarget.style.color = "Black";
 	}
 
-	let oLblMode = document.getElementById("lblMode");
+	let oLblRemoveOrigin = document.getElementById("lblRemoveOrigin");
 	oStrUrl = new String(strUrl);
 	// disable checkbox for urls starting about, chrome etc
 	if ( !(oStrUrl.startsWith("http")) ) {
-		oChckbxMode.disabled = true;
-		oLblMode.style.color = "DimGray";
+		oChckbxRemoveOrigin.disabled = true;
+		oLblRemoveOrigin.style.color = "DimGray";
 	} else {
-		oChckbxMode.disabled = false; 
-		oLblMode.style.color = "Black";
+		oChckbxRemoveOrigin.disabled = false; 
+		oLblRemoveOrigin.style.color = "Black";
 	}
 
 	let bUrlOnly = document.getElementById("chckbxUrlOnly").checked;
 	let bRemoveQuery = document.getElementById("chckbxRemoveQuery").checked;
+	let bRemoveFragment = document.getElementById("chckbxRemoveFragment").checked;
 	let txtrResult = document.getElementById('txtrResult');
-	txtrResult.textContent = assembleURL(strUrl, strTitle, strTarget, strType, bMode, bUrlOnly, bRemoveQuery);
+	txtrResult.textContent = assembleURL(strUrl, strTitle, strTarget, strType, bRemoveOrigin, bUrlOnly, bRemoveQuery, bRemoveFragment);
 	console.log("Completed doUpdateResultOutput()");
 }
 
-function processPathModes(inputURL, bRelative, bNoQuery) {
+function processPathModes(inputURL, bNoOrigin, bNoQuery, bNoFragment) {
 	urlComplete = new URL(inputURL);
 	strURL = inputURL;
+	console.log("Starting processPathModes");
+	console.log(inputURL);
+	console.log(urlComplete);
 	if (bNoQuery) {
-		strURL = urlComplete.origin + urlComplete.pathname;
+		urlComplete.search = "";
+		strURL = urlComplete.href;
 	}
-	if (bRelative) {
-		iBaseLen = urlComplete.origin.length;
-		strURL = '.' + urlComplete.href.substr(iBaseLen);
+	if (bNoFragment) {
+		urlComplete.hash = "";
+		strURL = urlComplete.href;
 	}
-	if (bNoQuery && bRelative) {
-		strURL = '.' + urlComplete.pathname;
+	if (bNoOrigin) {
+		// setting urlComplete.origin does not work as I want
+		strURL = "." + urlComplete.pathname + urlComplete.search + urlComplete.hash;
 	}
+	console.log("URL = " + strURL);
 	return strURL;
 }
 
-function assembleURL(theURL, theTitle, theTarget, theType, bRelUrl, bOnlyUrl, bRemoveQuery) {
+function assembleURL(theURL, theTitle, theTarget, theType, bRelUrl, bOnlyUrl, bRemoveQuery, bRemoveFragment) {
 	console.log('Assembling the Output');
 	strResult = "";
 
-	strURL = processPathModes(theURL, bRelUrl, bRemoveQuery);
+	strURL = processPathModes(theURL, bRelUrl, bRemoveQuery, bRemoveFragment);
 
 	if (bOnlyUrl) {
 		theTitle = strURL;

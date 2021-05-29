@@ -3,6 +3,7 @@
 - added two new buttons to easily copy the page title or page url (Issue #14, partial)
 - added new option to use url instead of the title (Issue #14, partial)
 - added option to remove query parameters (Issue 15)
+- added option to remove fragment or hash anchor
 - some JavaScript refactoring to remove duplication and aid readability
 
 2.5.1
