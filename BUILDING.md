@@ -58,7 +58,7 @@ Currently the release process only runs on Windows and also relies on [7-Zip](ht
 
 * Make sure all changes are committed to git and pushed to GitHub
 * If necessary, merge the working branch into the main branch
-* Apply a tag to git and push this to GitHub (`git tag '2.5.0'` then `git push --tags`)
+* Apply a tag to git and push this to GitHub (`git tag 2.5.0` then `git push --tags`)
 * Execute `Build-WebExtension.cmd` to produce `Titles-Extension.zip`
 * In GitHub, go to [Releases · glawrence/titles-extension](https://github.com/glawrence/titles-extension/releases) and click "Draft a new release"
 * Put the new version number in the "Tag version" box, for example "2.5.0"
