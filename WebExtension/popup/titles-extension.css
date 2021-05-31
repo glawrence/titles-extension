@@ -3,6 +3,10 @@ html {
 	font-size: 10px;
 }
 
+body {
+	width: 650px;
+}
+
 h3 {
 	font-size: 2.6rem;
 	text-align: center;

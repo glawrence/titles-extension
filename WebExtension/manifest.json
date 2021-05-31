@@ -1,12 +1,13 @@
 {
   "manifest_version": 2,
   "name": "Titles Extension",
-  "version": "2.6.0",
+  "version": "2.6.1",
 
   "description": "Extension to get page titles and urls and format them as HTML, Markdown or for a Wiki to speed up and improve copying links",
   "homepage_url": "https://www.geoffdoesstuff.com/titles-extension",
 
   "icons": {
+    "32": "icons/gds_logo_32.png",
     "48": "icons/gds_logo_48.png"
   },
   

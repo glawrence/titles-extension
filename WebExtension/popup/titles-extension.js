@@ -39,6 +39,23 @@ function onDOMContentLoaded() {
 			global_AllTabs = tabsAll;
 		});
 	}
+
+	setupUI();
+}
+
+function setupUI() {
+	let browserObject;
+	if (global_currentBrowser == browserChromium) {
+		browserObject = chrome;
+	} else if (global_currentBrowser == browserFirefox) {
+		browserObject = browser;
+	} else {
+		console.error("Unknown browser");
+		return;
+	}
+	document.getElementById("spnVersion").innerText = browserObject.runtime.getManifest().version;
+	document.getElementById("spnTitle").innerText = browserObject.runtime.getManifest().name;
+	document.getElementById("spnDescription").innerText = browserObject.runtime.getManifest().description;
 }
 
 function populateUI(tab) {
@@ -49,7 +66,6 @@ function populateUI(tab) {
 		inptTitle.value = tab.title;
 		let inptUrl = document.getElementById('inptUrl');
 		inptUrl.value = tab.url;
-		let txtrResult = document.getElementById('txtrResult');
 		doUpdateResultOutput(null);
 	} else {
 		// should never get here
@@ -62,10 +78,8 @@ function clickCopyButton(event) {
 	if (srcId === "btnCopyTitle") {
 		copyElementTextToClipboard("inptTitle")
 	} else if (srcId === "btnCopyUrl") {
-		let bRelative = document.getElementById("chckbxRemoveOrigin").checked;
-		let bRemoveQuery = document.getElementById("chckbxRemoveQuery").checked;
-		let oUrl = document.getElementById('inptUrl');
-		oUrl.value = processPathModes(oUrl.value, bRelative, bRemoveQuery);
+		let oUrl = document.getElementById("inptUrl");
+		oUrl.value = callProcessPathModes();
 		copyElementTextToClipboard("inptUrl")
 	} else if (srcId === "btnCopy") {
 		copyElementTextToClipboard('txtrResult');
@@ -81,7 +95,6 @@ function clickCopyAllButton(event) {
 	let bFoundPinned = false;
 	let iWindowId = global_AllTabs[0].windowId;
 	for (let tab of global_AllTabs) {
-		// see https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/tabs/Tab
 		if (tab.windowId != iWindowId) {
 			iWindowId = tab.windowId;
 			txtOutput += "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
@@ -114,7 +127,6 @@ function doUpdateResultOutput(event) {
 	let strUrl = document.getElementById('inptUrl').value;
 	let strTarget = oSlctTarget.value;
 	let strType = document.querySelector('input[name="typeselection"]:checked').value;
-	let bRemoveOrigin = oChckbxRemoveOrigin.checked;
 
 	let oLblTarget = document.getElementById("lblTarget");
 	// disable the HTML specific items when not HTML type
@@ -137,12 +149,23 @@ function doUpdateResultOutput(event) {
 		oLblRemoveOrigin.style.color = "Black";
 	}
 
+	strUrl = callProcessPathModes();
+
 	let bUrlOnly = document.getElementById("chckbxUrlOnly").checked;
+	let txtrResult = document.getElementById('txtrResult');
+
+	txtrResult.textContent = assembleOutputFormat(strUrl, strTitle, strTarget, strType, bUrlOnly);
+	console.log("Completed doUpdateResultOutput()");
+}
+
+function callProcessPathModes() {
+	let strUrl = document.getElementById('inptUrl').value;
+	let bRemoveOrigin = document.getElementById("chckbxRemoveOrigin").checked;
 	let bRemoveQuery = document.getElementById("chckbxRemoveQuery").checked;
 	let bRemoveFragment = document.getElementById("chckbxRemoveFragment").checked;
-	let txtrResult = document.getElementById('txtrResult');
-	txtrResult.textContent = assembleURL(strUrl, strTitle, strTarget, strType, bRemoveOrigin, bUrlOnly, bRemoveQuery, bRemoveFragment);
-	console.log("Completed doUpdateResultOutput()");
+
+	strUrl = processPathModes(strUrl, bRemoveOrigin, bRemoveQuery, bRemoveFragment);
+	return strUrl;
 }
 
 function processPathModes(inputURL, bNoOrigin, bNoQuery, bNoFragment) {
@@ -167,35 +190,33 @@ function processPathModes(inputURL, bNoOrigin, bNoQuery, bNoFragment) {
 	return strURL;
 }
 
-function assembleURL(theURL, theTitle, theTarget, theType, bRelUrl, bOnlyUrl, bRemoveQuery, bRemoveFragment) {
+function assembleOutputFormat(theURL, theTitle, theTarget, theType, bOnlyUrl) {
 	console.log('Assembling the Output');
 	strResult = "";
 
-	strURL = processPathModes(theURL, bRelUrl, bRemoveQuery, bRemoveFragment);
-
 	if (bOnlyUrl) {
-		theTitle = strURL;
+		theTitle = theURL;
 	}
 	let iType = parseInt(theType);
 	switch (iType) {
 		case 0:
 			if (theTarget == "none") {
-				strResult = '<a href="' + strURL + '">' + theTitle + '</a>';
+				strResult = '<a href="' + theURL + '">' + theTitle + '</a>';
 			} else {
-				strResult = '<a target="' + theTarget + '" href="' + strURL + '">' + theTitle + '</a>';
+				strResult = '<a target="' + theTarget + '" href="' + theURL + '">' + theTitle + '</a>';
 			}
 			break;
 		case 1:
-			strResult = '[' + theTitle + '](' + strURL + ')';
+			strResult = '[' + theTitle + '](' + theURL + ')';
 			break;
 		case 2:
-			strResult = '{{' + theTitle + '|' + strURL + '}}';
+			strResult = '{{' + theTitle + '|' + theURL + '}}';
 			break;
 		case 3:
-			strResult = '[' + strURL + ' ' + theTitle + ']';
+			strResult = '[' + theURL + ' ' + theTitle + ']';
 			break;
 		case 4:
-			strResult = '[' + strURL + '|' + theTitle + ']';
+			strResult = '[' + theURL + '|' + theTitle + ']';
 			break;
 		default:
 			strResult = "Unknown!";
@@ -222,7 +243,7 @@ function detectCurrentBrowser() {
 		global_currentBrowser = browserChromium;
 	} else {
 		global_currentBrowser = browserUnknown;
-		console.log('ERROR: unknown browser Chrome: [' + typeof chrome + '] Browser: [' + typeof browser + ']');
+		console.error('ERROR: unknown browser Chrome: [' + typeof chrome + '] Browser: [' + typeof browser + ']');
 	}
 	console.log('Current browser is: ' + global_currentBrowser);
 }

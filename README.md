@@ -21,7 +21,7 @@ Now that the original XUL based add-on has been written as a Web Extension then 
 * Improve how the layout is done, so that it renders well across browsers and operating systems
 
 # History
-This is a brief history of my Titles Extension
+This is a brief history of my Titles Extension, there is also a more complete [changelog.txt](https://github.com/glawrence/titles-extension/blob/main/WebExtension/changelog.txt) available.
 
 ## Pre-Release
 The very first versions of the extension were for my own personal use. I just wanted a quick and easy way to simply get the URL of a web page, along with the title, of the page from the `<title>` tag in the HTML source. Doing this manually was hard work, so it was Firefox extension to the rescue.

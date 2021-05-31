@@ -1,3 +1,9 @@
+2.6.1
+- updated the JavaScript to fix the "Copy URL" button bug (Issue #16)
+- refactored the JavaScript to make it clearer and cleaner
+- fixed problem with window width on Microsoft Edge
+- added info from manifest to bottom of window, including version
+
 2.6.0
 - added output format to support Atlassian tools (Issue #13)
 - added two new buttons to easily copy the page title or page url (Issue #14, partial)
