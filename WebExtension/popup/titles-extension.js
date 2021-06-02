@@ -24,35 +24,20 @@ function onDOMContentLoaded() {
 	document.getElementById("rdMediaWiki").addEventListener("click", doUpdateResultOutput);
 	document.getElementById("rdWikiMarkup").addEventListener("click", doUpdateResultOutput);
 
-	if (global_currentBrowser == browserChromium) {
-		chrome.tabs.query({currentWindow: true, active: true}, function(tabs) {
-			populateUI(tabs[0]);
-		});
-		chrome.tabs.query({}, function(tabsAll) {
-			global_AllTabs = tabsAll;
-		});
-	} else if (global_currentBrowser == browserFirefox) {
-		browser.tabs.query({currentWindow: true, active: true}).then((tabs) => {
-			populateUI(tabs[0]);
-		});
-		browser.tabs.query({}).then((tabsAll) => {
-			global_AllTabs = tabsAll;
-		});
-	}
+	let browserObject = getBrowserObject();
+
+	browserObject.tabs.query({currentWindow: true, active: true}, function(tabs) {
+		populateUI(tabs[0]);
+	});
+	browserObject.tabs.query({}, function(tabsAll) {
+		global_AllTabs = tabsAll;
+	});
 
 	setupUI();
 }
 
 function setupUI() {
-	let browserObject;
-	if (global_currentBrowser == browserChromium) {
-		browserObject = chrome;
-	} else if (global_currentBrowser == browserFirefox) {
-		browserObject = browser;
-	} else {
-		console.error("Unknown browser");
-		return;
-	}
+	let browserObject = getBrowserObject();
 	document.getElementById("spnVersion").innerText = browserObject.runtime.getManifest().version;
 	document.getElementById("spnTitle").innerText = browserObject.runtime.getManifest().name;
 	document.getElementById("spnDescription").innerText = browserObject.runtime.getManifest().description;
@@ -233,6 +218,18 @@ function copyElementTextToClipboard(elementId) {
 
 function closeExtensionWindow() {
 	window.close(); //close the popup
+}
+
+function getBrowserObject() {
+	let browserObject;
+	if (global_currentBrowser == browserChromium) {
+		browserObject = chrome;
+	} else if (global_currentBrowser == browserFirefox) {
+		browserObject = browser;
+	} else {
+		console.error("Unknown browser");
+	}
+	return browserObject;
 }
 
 function detectCurrentBrowser() {

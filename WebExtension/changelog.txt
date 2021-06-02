@@ -1,3 +1,5 @@
+- refactored the JavaScript to consolidate browser detecting code
+
 2.6.1
 - updated the JavaScript to fix the "Copy URL" button bug (Issue #16)
 - refactored the JavaScript to make it clearer and cleaner
