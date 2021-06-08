@@ -1,3 +1,4 @@
+- fixed error in "Wiki Markup" output format
 - refactored the JavaScript to consolidate browser detecting code
 
 2.6.1

@@ -201,7 +201,7 @@ function assembleOutputFormat(theURL, theTitle, theTarget, theType, bOnlyUrl) {
 			strResult = '[' + theURL + ' ' + theTitle + ']';
 			break;
 		case 4:
-			strResult = '[' + theURL + '|' + theTitle + ']';
+			strResult = '[' + theTitle + '|' + theURL + ']';
 			break;
 		default:
 			strResult = "Unknown!";
